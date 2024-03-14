@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/12.png">
+    <title>Securify.ai</title>
+    <style>
+        /* CSS Styles from newindex.html */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            /* background-color: #f5f5f5; */
+            background-image: url('12.png');
+            position: relative;
+            min-height: 100vh;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #home {
+            background-image: url('12.png');
+        }
+
+        nav {
+            background-color: #f5f5f5;
+            border-bottom: 2px solid #000000;
+            width: 100%;
+            padding: 10px 0;
+            text-align: centers;
+            position: fixed;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #000000;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 50px;
+            font-size: 18px;
+            cursor: pointer; /* Added cursor pointer for better user interaction */
+        }
+        
+        .hero {
+            color: #000;
+            text-align: center;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 100px);
+            
+        }
+
+
+        .securify-component {
+            color: #000000;
+            font-size: 100px;
+            justify-content: left;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 20px;
+            
+        }
+
+        /* New CSS Styles for Result Display */
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Map Display Styles */
+        .map-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 500px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+
+        /* New CSS Styles for About Section */
+        .about {
+            text-align: center;
+            margin-top: 150px;
+            margin-bottom: 10px; /* Added bottom margin */
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            max-width: 800px;
+        }
+
+        #image-service {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    max-width: 800px;
+}
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: #000000;
+            font-family: 'Courier New', Courier, monospace; /* Set font to Courier New */
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+            border: none; /* Remove border */
+            transition: border 0.3s ease; /* Add transition for smooth hover effect */
+        }
+
+        .dropbtn:hover {
+            border: 2px solid #000000; /* Add border on hover */
+        }
+
+        .search-txtbox {
+  display: block;
+  margin-left: auto;
+  text-align: right;
+  gap: 5px;
+  padding: 0px;
+}
+
+.search-box {
+  border: none;
+  border-bottom: 1px solid #aaa;
+  background: transparent;
+  outline: none;
+  height: 18px;
+  color: #fff;
+  width: 250px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.5s;
+
+}
+
+.search-box:focus {
+  width: 400px;
+  border-color: #1f80e0;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Transparent Navbar -->
+    <nav>
+        <a href="#home">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Services</button>
+            <div class="dropdown-content">
+                <a href="#image-service">Image Service</a>
+                <a href="#map">Location Service</a>
+            </div>
+        </div>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <div class="search-txtbox">
+            <input type="text" class="search-box" placeholder="Search" />
+        </div>
+        
+    </nav>
+    
+
+    
+    <section class="hero" id="home">
+        <div class="securify-component">
+            Securify
+        </div>
+    </section>
+<!-- 
+    <div class="hero_bg_img_con">
+        <img src="12.png" alt="Securify" class="hero_bg_img" />
+      </div>
+      <div class="hero_bg_overlay"></div> -->
+    
+    <!-- <title>Background Image Example</title> -->
+   
+
+    <!-- Image Result Display -->
+    <section class="result">
+        {% if prediction %}
+        <h2>Prediction Result:</h2>
+        <img src="{{ url_for('get_result_image') }}" alt="Result Image">
+        {% endif %}
+    </section>
+
+    <!-- Map Display -->
+    <section class="map-container" id="map">
+        <h2>Map</h2>
+        <iframe src="{{ url_for('display_map') }}" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </section>
+
+    <!-- About Section -->
+<section class="about" id="about">
+    <h2>About Us</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut justo sodales, fringilla libero at, eleifend nunc. Integer sit amet felis in mauris tempor ultrices vel ac lacus. Donec quis augue id tortor congue placerat. Nunc condimentum eros eu ante tempus, nec bibendum ligula ultrices.</p>
+    <p>Vestibulum bibendum, lorem in ultricies pretium, sem purus condimentum est, ut ultrices quam orci eget lorem. Sed hendrerit, risus eget fermentum tristique, nunc orci dictum felis, vel malesuada purus odio vitae turpis. Mauris ac aliquet ante.</p>
+</section>
+
+<!-- Image Service-->
+<section class="container" id="image-service">
+    <header>
+        <h1>Image Service</h1>
+    </header>
+    <section id="image-service" class="container">
+        <h2>Upload a File for Fight Detection</h2>
+        <form action="{{ url_for('image_service') }}" method="post" enctype="multipart/form-data">
+            <label for="file" class="upload-btn">Choose a file</label>
+            <input type="file" id="file" name="file" class="file-input" accept=".png, .jpg, .jpeg, .gif, .mp4, .mov, .avi" required>
+            <input type="submit" value="Upload" class="upload-btn">
+        </form>
+    </section>
+</section>
+
+
+<!-- Location Service -->
+<section class="container" id="location-service">
+    <!-- <header>
+        <h1>Location Service</h1>
+    </header> -->
+    <nav>
+        <form action="{{ url_for('display_map') }}" method="post">
+            <button type="submit">Location Service</button>
+        </form>
+    </nav>
+</section>
+
+</body>
+
+
+</html>
+
